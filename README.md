@@ -1,81 +1,68 @@
-# 🧪 AZ-900 Exam Simulator — OnVUE Style (PyQt6)
+# 🧪 AZ‑900 Exam Simulator — Pearson OnVUE‑Style (PyQt6)
 
-This is a fully offline, self-contained **Microsoft Azure Fundamentals (AZ-900)** exam simulator that replicates the official **OnVUE** exam experience. Built with Python and PyQt6, it's perfect for prepping under real-world test conditions.
-
----
-
-## 🎯 Features
-
-- ✅ **Full 50-Question AZ-900 Bank**  
-  Questions are randomized each session, grouped by exam domain.
-
-- 💻 **OnVUE-Inspired UI/UX**  
-  Replicates the layout, flow, and pressure of the real Pearson exam.
-
-- 🌗 **Dark/Light Mode Toggle**  
-  Switch seamlessly using `Ctrl + D`.
-
-- 🏁 **Flag Questions for Review**  
-  Mark questions to revisit before submitting.
-
-- ⏱️ **Countdown Timer**  
-  60-minute exam timer with red flashing warning in the last 5 minutes.
-
-- 📊 **Scoring System**  
-  Final score out of **1000**, with **700** as the pass threshold.
-
-- 🔁 **Review + Edit Answers Before Submission**  
-  Review all questions and answers before grading.
-
-- 📦 **Self-Contained Resources**  
-  Base64-encoded Fluent UI icons – no internet or image assets required.
+A **100 % offline** Microsoft Azure Fundamentals (**AZ‑900**) exam simulator that mirrors the official Pearson OnVUE flow. Built with Python + PyQt6, it lets you drill under real‑world pressure without touching the internet.
 
 ---
 
-## 🚀 Getting Started
+## 🎯 Key Features
 
-### 1. Clone the Repo
+| ✔️ | Capability | Details |
+|----|------------|---------|
+| **54‑Question Bank** | All five exam domains, fully randomized every session |
+| **True OnVUE UX** | Palette, flag button, timer, review flow, light/dark theme |
+| **Explanations** | Post‑exam feedback screen shows correct answer *and* rationale |
+| **Dark ↔ Light Toggle** | Press **Ctrl + D** anytime |
+| **Flag for Review** | Press **F** or click the flag icon |
+| **1‑Hour Timer** | Red flash below 5 minutes |
+| **Scoring** | 0‑1000 scale, 700 to pass |
+| **Verbose Logging** | Console logs exam lifecycle & answer saves |
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/az900-exam-simulator.git
+# 1 . Clone
+git clone https://github.com/<your‑user>/az900-exam-simulator.git
 cd az900-exam-simulator
 
+# 2 . (Optional) create venv
+python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
 
-🧠 Keyboard Shortcuts
+# 3 . Install deps
+pip install -r requirements.txt        # PyQt6‑based
 
-| Shortcut   | Action                 |
-| ---------- | ---------------------- |
-| `Ctrl + D` | Toggle Dark/Light Mode |
-| `← / →`    | Navigate Questions     |
-| `F`        | Flag/Unflag Question   |
+# 4 . Launch
+python main.py
 
-📷 Screenshots
 
-| Exam Screen                   | Review Screen                     | Results Screen                      |
-| ----------------------------- | --------------------------------- | ----------------------------------- |
-| ![exam](screenshots/exam.png) | ![review](screenshots/review.png) | ![results](screenshots/results.png) |
+⌨️ Shortcuts
+Keys	Action
+Ctrl + D	Toggle dark / light mode
+← / →	Previous / next question
+F	Flag / unflag question
 
-(Make sure to add screenshots in a screenshots/ folder.)
+📸 Screenshots
+| Exam Screen │ Review Screen │ Results + Feedback |
+|-------------|---------------|--------------------|
+||||
 
-📁 Folder Structure
+(Add PNGs to screenshots/ or remove this section.)
 
+📂 Project Layout
 az900-exam-simulator/
-│
-├── main.py                # Entry point
-├── README.md              # This file
-├── screenshots/           # UI images (optional)
-└── .venv/                 # Virtual env (optional)
-
-📜 License
-MIT License.
-Feel free to fork, modify, or use in your own certification prep tools.
-
-💡 Credit
-Questions adapted to reflect Microsoft’s AZ-900 exam domains.
-
-Icons: Fluent UI System Icons
-
-Simulator inspired by the real Pearson OnVUE interface.
+├─ main.py             # Entry point
+├─ requirements.txt    # PyQt6 pin
+├─ README.md
+└─ screenshots/        # Optional UI captures
 
 
+📝 License
+MIT — free for personal or commercial use. Pull requests welcome.
 
+🙏 Credits
+Questions & Domains — curated to reflect Microsoft’s AZ‑900 blueprint (no official material reproduced).
+
+Icons — Programmatically drawn to avoid external assets, inspired by Microsoft Fluent UI.
+
+UX — Heavily modeled on Pearson VUE’s OnVUE interface for muscle‑memory training.
