@@ -627,20 +627,44 @@ class ExamApp(QMainWindow):
     def _show_review_screen(self):
         self.review_list.clear()
         s = STYLES[self.current_theme]
+
         self.summary_answered.setText(
-            f"<span style='background-color:{s['answered']};'>&nbsp;✅ Answered: {len(self.responses)}&nbsp;</span>")
+            f"<span style='background-color:{s['answered']}; padding:4px;'>&nbsp;✅ Answered: {len(self.responses)}&nbsp;</span>"
+        )
         self.summary_unanswered.setText(
-            f"<span style='background-color:{s['unanswered']};'>&nbsp;❌ Unanswered: {len(self.questions) - len(self.responses)}&nbsp;</span>")
+            f"<span style='background-color:{s['unanswered']}; padding:4px;'>&nbsp;❌ Unanswered: {len(self.questions) - len(self.responses)}&nbsp;</span>"
+        )
         self.summary_flagged.setText(
-            f"<span style='background-color:{s['flagged']};'>&nbsp;⚠️ Flagged: {len(self.flags)}&nbsp;</span>")
+            f"<span style='background-color:{s['flagged']}; padding:4px;'>&nbsp;⚠️ Flagged: {len(self.flags)}&nbsp;</span>"
+        )
+
+        self.review_list.setSpacing(10)
 
         for i, (_, q_data) in enumerate(self.questions):
             widget = QWidget(objectName="ReviewItemWidget")
             layout = QVBoxLayout(widget)
-            q_text = f"<b>Q{i + 1}: {q_data['q']}</b>" + (" (🚩 Flagged)" if i in self.flags else "")
-            ans_text = f"Your Answer: {self.responses.get(i, '<i>Not Answered</i>')}"
-            layout.addWidget(QLabel(q_text));
-            layout.addWidget(QLabel(ans_text))
+            layout.setContentsMargins(10, 10, 10, 10)
+            layout.setSpacing(6)
+
+            q_label = QLabel()
+            q_label.setTextFormat(Qt.TextFormat.RichText)
+            q_label.setWordWrap(True)
+            q_label.setStyleSheet("font-size: 16px; font-weight: 500;")
+            flagged_tag = " <span style='color:orange'>(🚩 Flagged)</span>" if i in self.flags else ""
+            q_label.setText(f"<b>Q{i + 1}:</b> {q_data['q']}{flagged_tag}")
+
+            a_label = QLabel()
+            a_label.setTextFormat(Qt.TextFormat.RichText)
+            a_label.setWordWrap(True)
+            a_label.setStyleSheet("font-size: 15px;")
+            response = self.responses.get(i, "<i>Not Answered</i>")
+            a_label.setText(f"<b>Your Answer:</b> {response}")
+
+            layout.addWidget(q_label)
+            layout.addWidget(a_label)
+
+            widget.setLayout(layout)
+            widget.adjustSize()
 
             item = QListWidgetItem()
             item.setSizeHint(widget.sizeHint())
